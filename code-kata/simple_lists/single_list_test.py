@@ -1,10 +1,9 @@
 import unittest
-from single_list import *
-
+from single_list import SingleList
 
 class ListTest(unittest.TestCase):
 
-    def single_test_one(self):
+    def test_single_one(self):
         lst = SingleList()
         self.assertEqual(None, lst.find("fred"))
         lst.add("fred")
@@ -15,7 +14,7 @@ class ListTest(unittest.TestCase):
         self.assertEqual("wilma", lst.find("wilma").value)
         self.assertEqual(["fred", "wilma"], lst.values())
 
-    def single_test_two(self):
+    def test_single_two(self):
         lst = SingleList()
         lst.add("fred")
         lst.add("wilma")

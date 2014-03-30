@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-class Node():
+class DoubleNode():
     def __init__(self, value):
         self.value = value
         self.next = None
@@ -12,10 +12,13 @@ class DoubleList():
         self.head = None
 
     def add(self, value):
-        node = Node(value)
-        node.next = self.head
-        self.head.prev = node
-        self.head = node
+        node = DoubleNode(value)
+        if not self.head:
+            self.head = node
+        else:
+            node.next = self.head
+            self.head.prev = node
+            self.head = node
 
     def find(self, value):
         '''
@@ -40,9 +43,10 @@ class DoubleList():
             else:
                 previous, current = current, current.next
 
-        if found and previous:
+        if found and previous is None:
             self.head = current.next
-            current.next.prev = self.head
+            if current.next:
+                current.next.prev = self.head
         else:
             previous.next = current.next
             current.next.prev = previous.next
