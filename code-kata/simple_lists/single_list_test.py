@@ -3,6 +3,7 @@ from single_list import *
 
 
 class ListTest(unittest.TestCase):
+
     def single_test_one(self):
         lst = SingleList()
         self.assertEqual(None, lst.find("fred"))
