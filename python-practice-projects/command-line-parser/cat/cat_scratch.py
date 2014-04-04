@@ -16,6 +16,10 @@ def usage(info):
     '''
     sys.exit('usage: python %s [-benstuv] [file ...]' % info)
 
+def dispatcher(files):
+    for filename in files:
+        read(filename)
+
 def read(filename):
     if not os.path.exists(filename):
         sys.exit('%s: No such file or directory' % filename)
@@ -33,4 +37,4 @@ if __name__ == '__main__':
     #elif sys.argv[1].startswith('-'):
         #read(sys.argv[1])
     else: # files
-        read(sys.argv[1])
+        dispatcher(sys.argv[1:])
