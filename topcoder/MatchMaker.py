@@ -19,33 +19,29 @@ class MatchMaker(object):
         :param currentUser(str) Current user's name
         :param sf(int) identical score
         """
-
-        def get_score(src, dst):
-            """(int) Compares answer list with two users and returns scores of matches.
-            """
+        def get_score(member, current_user):
             score = 0
-            for i in range(len(src)):
-                if dst[i] == src[i]:
+            for i in range(len(current_user)):
+                if member[i] == current_user[i]:
                     score += 1
             return score
 
-        def is_desire_user(user, current):
-            return user[1] == current[2] and user[2] == current[1]
+        def is_matched(member, current_user):
+            return current_user[2] == member[1] and current_user[1] == member[2]
 
-        current = []
-        for member in members:  # Find the current user
+        current_user = []
+        for member in members:
             user = member.split(" ")
             if user[0] == currentUser:
-                current = user
+                current_user = user
 
         matches = []
         for member in members:
             user = member.split(" ")
-            if is_desire_user(user, current) and get_score(current[3:], user[3:]) >= sf:
+            if is_matched(user, current_user) and get_score(user[3:], current_user[3:]) >= sf:
                 matches.append(user[0])
 
         return matches
-
 
 if __name__ == '__main__':
     test = {"BETTY F M A A C C",
