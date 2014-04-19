@@ -1,7 +1,7 @@
-
 class MatchMaker(object):
     """Find the best matcher.
     """
+
     def __init__(self):
         pass
 
@@ -19,6 +19,7 @@ class MatchMaker(object):
         :param currentUser(str) Current user's name
         :param sf(int) identical score
         """
+
         def get_score(member, current_user):
             score = 0
             for i in range(len(current_user)):
@@ -27,11 +28,12 @@ class MatchMaker(object):
             return score
 
         def is_matched(member, current_user):
-            return current_user[2] == member[1] and current_user[1] == member[2]
+            return current_user[2] == member[1]
 
         current_user = []
         for member in members:
             user = member.split(" ")
+            print member
             if user[0] == currentUser:
                 current_user = user
 
@@ -39,9 +41,11 @@ class MatchMaker(object):
         for member in members:
             user = member.split(" ")
             if is_matched(user, current_user) and get_score(user[3:], current_user[3:]) >= sf:
-                matches.append(user[0])
+                if user[0] != current_user[0]:
+                    matches.append(user[0])
 
         return matches
+
 
 if __name__ == '__main__':
     test = {"BETTY F M A A C C",
@@ -54,8 +58,13 @@ if __name__ == '__main__':
             "MARGE F M A A C C"}
 
     # If current user is 'Betty' and sf=2, TOM and JOE should be there
-    result = MatchMaker.getBestMatches(test, "BETTY", 2)
-    print result
+    #result = MatchMaker.getBestMatches(test, "BETTY", 2)
+    #print result
 
-    result = MatchMaker.getBestMatches(test, "MARGE", 4)
+    #result = MatchMaker.getBestMatches(test, "MARGE", 4)
+    #print result
+
+    #test2 = {"BOB M M A", "FRED M F A", "JIM F M A", "DAISY F F A"}
+    test3 = {"BETTY F M A A C C", "TOM M F A D C A", "SUE F M D D D D", "ELLEN F M A A C A", "JOE M F A A C A", "ED M F A D D A", "SALLY F M C D A B", "MARGE F M A A C C"}
+    result = MatchMaker.getBestMatches(test3, "JOE", 1)
     print result
