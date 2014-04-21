@@ -13,14 +13,6 @@
 using namespace std;
 
 int main() {
-    priority_queue<int> queue;
-
-    for (int i = 0; i < 10; i++) {
-        queue.push(i);
-    }
-    
-    while (!queue.empty()) {
-        cout << queue.top() << " ";
-        queue.pop();
-    }
+    cout << "Hello, World." << endl;
+    return 0;
 }
