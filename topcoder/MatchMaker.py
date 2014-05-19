@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+
+__author__ = 'Rio'
+
 class MatchMaker(object):
-    """Find the best matcher.
-    """
+    """Find the best matcher."""
 
     def __init__(self):
         pass
